@@ -4,23 +4,51 @@
     <title>Zenith Airlines Redirect</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body { font-family: sans-serif; text-align: center; padding-top: 80px; background: #0F172A; color: white; }
-        .btn { background: #38BDF8; color: #0F172A; padding: 14px 28px; border-radius: 8px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 20px; font-size: 16px; }
+        body { 
+            font-family: sans-serif; 
+            text-align: center; 
+            padding-top: 80px; 
+            background: #0F172A; 
+            color: white; 
+        }
+        .btn { 
+            background: #38BDF8; 
+            color: #0F172A; 
+            padding: 14px 28px; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            display: inline-block; 
+            margin-top: 20px; 
+            font-size: 16px; 
+        }
     </style>
 </head>
 <body>
     <h1>Zenith Airlines</h1>
     <p>Autenticación con Discord exitosa.</p>
-    <p>Pulsa el botón para regresar a la app:</p>
-    <a id="openAppBtn" class="btn" href="#">Abrir Aplicación</a>
+    <p>Pulsa el siguiente botón para regresar a la aplicación:</p>
+    
+    <!-- Botón manual garantizado -->
+    <a id="launchButton" class="btn" href="#">Abrir Aplicación</a>
 
     <script>
-        // Construye la URL con los parámetros que mandó Discord (?code=...)
-        const customSchemeUrl = "zenithauth://discord" + window.location.search;
-        document.getElementById("openAppBtn.href = customSchemeUrl;
+        window.onload = function() {
+            // Captura los parámetros de la URL (ej: ?code=abc123xyz)
+            const queryParams = window.location.search;
+            
+            // Construye el esquema personalizado para tu app de Android
+            const customSchemeUrl = "zenithauth://discord" + queryParams;
+            
+            // Asigna la URL completa al botón
+            const btn = document.getElementById("launchButton");
+            btn.href = customSchemeUrl;
 
-        // Intento automático por si el navegador lo permite
-        window.location.href = customSchemeUrl;
+            // Intento opcional de redirección automática por si el navegador lo permite
+            setTimeout(function() {
+                window.location.href = customSchemeUrl;
+            }, 400);
+        };
     </script>
 </body>
 </html>
