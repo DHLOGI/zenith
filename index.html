@@ -13,9 +13,9 @@
     <div class="loader"></div>
     <p>Redirigiendo a la aplicación...</p>
     <script>
-        // Si el teléfono no abre la app automáticamente, este script intenta forzarlo
         window.onload = function() {
             setTimeout(function() {
+                // Redirige manteniendo los parámetros que mandó Discord (?code=...)
                 window.location.href = "zenithauth://discord" + window.location.search;
             }, 500);
         };
